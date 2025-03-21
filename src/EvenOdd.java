@@ -13,7 +13,7 @@ public class EvenOdd {
         int evenNumbers[] = new int[endingNum - startingNum + 1];
         int oddNumbers[] = new int[endingNum - startingNum + 1];
 
-        if(startingNum < endingNum)
+        if(startingNum >= endingNum)
         {
             System.out.println("Please enter valid input - starting number should not be less than ending number");
             return;
@@ -26,14 +26,14 @@ public class EvenOdd {
                 evenCount++;
                 System.out.println("Even numbers:" + i);
             }
-        }
-        for (int i = startingNum; i <= endingNum; i++) {
-            if (i % 2 != 0) {
+            else{
                 oddNumbers[oddCount] = i;
                 oddCount++;
                 System.out.println("Odd numbers:" + i);
+
             }
         }
+
         System.out.println("Even numbers stored in array");
         for (int i = 0; i < evenCount; i++) {
             System.out.println(evenNumbers[i]);
