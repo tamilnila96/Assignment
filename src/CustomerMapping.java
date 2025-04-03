@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CustomerMapping {
     private long id;
@@ -10,6 +12,60 @@ public class CustomerMapping {
 
 
     public CustomerMapping() {
+
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public  String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    @Override
+    public String toString() {
+        return " id :" + id + " ,  name : " + name + ", mobile : " + mobile + " , city : " + city + " , district :" + district + " , country : " + country ;
     }
 
     public CustomerMapping(long id, String name, String mobile, String city, String district, String country) {
@@ -40,6 +96,39 @@ public class CustomerMapping {
         CustomerList.add(Customer2);
         CustomerList.add(Customer3);
         CustomerList.add(Customer4);
+        System.out.println(" The number of customers in total are " + CustomerList.size());
+        for( CustomerMapping customer :CustomerList){
+            System.out.println(customer);
+        }
+
+        Map<String,ArrayList<CustomerMapping>>districtWiseCustomers = new HashMap<>();
+        Map<String,Integer>districtCount = new HashMap<>();
+
+        for(CustomerMapping customer : CustomerList) {
+            String district = customer.getDistrict();
+
+            districtWiseCustomers.putIfAbsent(district, new ArrayList<>());
+            districtWiseCustomers.get(district).add(customer);
+            districtCount.put(district, districtCount.getOrDefault(district, 0) + 1);
+        }
+        System.out.println("The district Wise customers");
+            for(Map.Entry<String,ArrayList<CustomerMapping>>entry: districtWiseCustomers.entrySet()){
+                System.out.println("District :" +  entry.getKey());
+                System.out.println("----------------------------");
+                for(CustomerMapping cust : entry.getValue()){
+                    System.out.println(cust.getName());
+
+                }
+            }
+
+            for(Map.Entry<String,Integer>entry: districtCount.entrySet()){
+                System.out.println("District : " + entry.getKey() + "--TotalCustomers : " + entry.getValue());
+            }
 
     }
-}
+
+
+
+
+    }
+
